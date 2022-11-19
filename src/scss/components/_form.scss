@@ -105,10 +105,20 @@
     margin: 0;
 }
 
-.form__inner_img {
+.form__inner_select {
+    display: flex;
+    align-items: center;
+}
+
+.form__inner_select_img {
     width: 30px;
     height: 30px;
     cursor: pointer;
+}
+
+.form__inner_select_text {
+    font-size: 15px;
+    margin-right: 6px;
 }
 
 .form__button {
@@ -121,6 +131,7 @@
 
     width: 100px;
     height: 40px;
+    margin-top: 20px;
 
     font-size: 18px;
     font-family: inherit;
@@ -132,6 +143,12 @@
     border-color: rgba(82, 168, 236, 0.8);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
     outline: 0 none;
+}
+
+.form__error {
+    margin: 5px 0 0;
+    font-size: 16px;
+    color: #f50d0d;
 }
 
 

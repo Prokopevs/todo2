@@ -1,5 +1,8 @@
 export interface IList {
-    text: string
-    completed: boolean
     id: string
+    title: string
+    subtitle: string
+    files: string[]
+    finishedDate: string
+    completed: boolean
 }

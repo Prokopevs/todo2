@@ -3,13 +3,30 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 600px;
+    margin: 0 auto;
 }
 
 .todo__item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin: 8px 0;
+    border:#f79012 3px solid;
+    border-radius: 15px;
+    padding: 7px;
+    width: 550px;
+}
+
+.todo__item.red { 
+    border:#f50d0d 3px solid;
+}
+
+.todo__item.green {
+    border:#00c63c 3px solid;
+}
+
+.todo__item_inner {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .todo__item_img {
@@ -20,10 +37,56 @@
 }
 
 .todo__item_text {
-    font-size: 27px;
-    margin: 0 30px 0 15px;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 30px 10px 15px;
     color:#f79012;
     font-family: 'Gloria Hallelujah', cursive;
+}
+
+.todo__item_subtitle {
+    margin: 0 40px 8px;
+    font-size: 16px;
+}
+
+.todo__item_files {
+    margin: 0 40px 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo__item_files_date {
+    display: flex;
+    align-items: flex-end;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.todo__item_files_date.red {
+    color: #f50d0d
+}
+
+.todo__item_files_date.green {
+    color:#00c63c
+}
+
+.todo__item_files_text {
+    font-size: 18px;
+    color: #ff7518;
+    margin: 6px 0;
+    font-weight: 600;
+}
+
+.todo__item_files_item {
+    font-size: 15px;
+    list-style: circle;
+    margin: 10px 0 0 19px;
+    cursor: pointer;
+    width: fit-content;
+
+    &:hover {
+        font-weight: 600;
+    }
 }
 
 .todo__item_text.completed {

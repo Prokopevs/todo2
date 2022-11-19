@@ -8,14 +8,15 @@ import {
     toggleComplete,
 } from "../store/redusers/todoSlice"
 import { close } from "../pictures"
+import dayjs from "dayjs"
 
-const TodoItem: React.FC<IList> = ({ id, text, completed }) => {
+const TodoItem: React.FC<IList> = (props) => {
     const dispatch = useAppDispatch()
+    const { id, title, subtitle, files, finishedDate, completed } = props
     const handleComplete = () => {
         const data = {
-            text: text,
+            ...props,
             completed: !completed,
-            id: id,
         }
         dispatch(fetchChangeCompleted(data))
         dispatch(toggleComplete(id))
@@ -26,31 +27,72 @@ const TodoItem: React.FC<IList> = ({ id, text, completed }) => {
         dispatch(removeTodo(id))
     }
 
+    const date = new Date()
+    const DateNow = dayjs(date).format("DD-MM-YYYY")
+    const checkCompletedOverdue = completed ? "todo__item green" : "todo__item red"
+    const checkCompletedActual = completed ? "todo__item green" : "todo__item"
+    const checkDate =
+        DateNow > finishedDate ? checkCompletedOverdue : checkCompletedActual
+
     return (
-        <div className="todo__item">
-            <div>
-                <input
-                    type="checkbox"
-                    checked={completed}
-                    id={id}
-                    onChange={() => handleComplete()}
-                />
-                <label htmlFor={id}>
-                    <div>
-                        <i className="fa fa-check"></i>
-                    </div>
-                </label>
+        <div className={checkDate}>
+            <div className="todo__item_inner">
+                <div>
+                    <input
+                        type="checkbox"
+                        checked={completed}
+                        id={id}
+                        onChange={() => handleComplete()}
+                    />
+                    <label htmlFor={id}>
+                        <div>
+                            <i className="fa fa-check"></i>
+                        </div>
+                    </label>
+                </div>
+
+                <p
+                    className={
+                        completed ? "todo__item_text completed" : "todo__item_text"
+                    }
+                >
+                    {title}
+                </p>
+
+                <img
+                    className="todo__item_img"
+                    src={String(close)}
+                    onClick={() => handleDelete()}
+                ></img>
             </div>
 
-            <p className={completed ? "todo__item_text completed" : "todo__item_text"}>
-                {text}
-            </p>
+            <p className="todo__item_subtitle">{subtitle}</p>
 
-            <img
-                className="todo__item_img"
-                src={String(close)}
-                onClick={() => handleDelete()}
-            ></img>
+            <div className="todo__item_files">
+                <div>
+                    {files.length !== 0 && (
+                        <p className="todo__item_files_text">Files:</p>
+                    )}
+                    <ul>
+                        {files.map((item, index) => (
+                            <li className="todo__item_files_item" key={item}>
+                                {index + 1} file
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <p
+                    className={
+                        DateNow > finishedDate
+                            ? completed
+                                ? "todo__item_files_date green"
+                                : "todo__item_files_date red"
+                            : "todo__item_files_date green"
+                    }
+                >
+                    Active until: {finishedDate}
+                </p>
+            </div>
         </div>
     )
 }
