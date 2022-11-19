@@ -1,0 +1,17 @@
+.total__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.total__info_line {
+    width: 550px;
+    height: 2.5px;
+    background-color: #000;
+    margin: 25px 0 10px 0; 
+}
+
+.total__info_text {
+    font-size: 17px;
+}

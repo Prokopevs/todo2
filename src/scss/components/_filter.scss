@@ -1,0 +1,22 @@
+.filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter__inner {
+    border: 1.5px solid #000;
+    border-radius: 4px;
+    margin: 20px 30px;
+    cursor: pointer;
+}
+
+.filter__inner.active {
+    background-color: #fa8a02;
+    border: 2px solid #000;
+}
+
+.filter__inner_text {
+    margin: 4px 6px;
+    font-size: 18px;
+}
