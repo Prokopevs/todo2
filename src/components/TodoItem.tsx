@@ -56,7 +56,8 @@ const TodoItem: React.FC<IList> = (props) => {
     const DateNow = dayjs(date).format("DD-MM-YYYY")
     const checkCompletedOverdue = completed ? "todo__item green" : "todo__item red"
     const checkCompletedActual = completed ? "todo__item green" : "todo__item"
-    const checkDate = DateNow > finishedDate ? checkCompletedOverdue : checkCompletedActual
+    const checkDate =
+        DateNow > finishedDate ? checkCompletedOverdue : checkCompletedActual
     return (
         <div className={checkDate}>
             <div className="todo__item_inner">
@@ -116,7 +117,7 @@ const TodoItem: React.FC<IList> = (props) => {
                     <ul>
                         {files.map((item, index) => (
                             <li className="todo__item_files_item" key={item}>
-                                <a download className="todo__item_files_link" href={item} >
+                                <a download className="todo__item_files_link" href={item}>
                                     {index + 1} file
                                 </a>
                             </li>

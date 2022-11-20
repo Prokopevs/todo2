@@ -1,11 +1,11 @@
-import React from "react"
+import React, { Dispatch, SetStateAction } from "react"
 import { file, fileG } from "../../pictures"
 import dayjs from "dayjs"
 import { filesUpload } from "../../http/postFiles"
 
 interface IFileAndDate {
     setDateFinish: (...args: string[]) => void
-    setFilesUrl: any
+    setFilesUrl: Dispatch<SetStateAction<never[]>>
     filesUrl: string[]
 }
 

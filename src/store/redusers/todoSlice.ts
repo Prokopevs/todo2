@@ -47,11 +47,7 @@ export const getData = () => async (dispatch: AppDispatch) => {
         const response = await getList()
         dispatch(setList(response.data))
     } catch (error) {
-        let errorMessage = "Error"
-        if (error instanceof Error) {
-            errorMessage = error.message
-        }
-        console.log(errorMessage)
+        errorHandler(error)
     }
 }
 
@@ -59,11 +55,7 @@ export const fetchChangeItem = (data: IList) => async (dispatch: AppDispatch) =>
     try {
         const response = await putList(data)
     } catch (error) {
-        let errorMessage = "Error"
-        if (error instanceof Error) {
-            errorMessage = error.message
-        }
-        console.log(errorMessage)
+        errorHandler(error)
     }
 }
 
@@ -71,11 +63,7 @@ export const fetchDeleteItem = (id: string) => async (dispatch: AppDispatch) => 
     try {
         const response = await deleteList(id)
     } catch (error) {
-        let errorMessage = "Error"
-        if (error instanceof Error) {
-            errorMessage = error.message
-        }
-        console.log(errorMessage)
+        errorHandler(error)
     }
 }
 
@@ -83,12 +71,16 @@ export const fetchPostItem = (data: IList) => async (dispatch: AppDispatch) => {
     try {
         const response = await postList(data)
     } catch (error) {
-        let errorMessage = "Error"
+        errorHandler(error)
+    }
+}
+
+const errorHandler = (error: unknown) => {
+    let errorMessage = "Error"
         if (error instanceof Error) {
             errorMessage = error.message
         }
-        console.log(errorMessage)
-    }
+    console.log(errorMessage)
 }
 
 export const { addTodo, toggleComplete, removeTodo, setList, replaceTitle } = todoSlice.actions
