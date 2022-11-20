@@ -98,6 +98,12 @@
     margin-bottom: 0;
 }
 
+@media screen and (max-width:450px) {
+    .form__input.date {
+        height: 40px;
+    }
+}
+
 .form__input.file {
     opacity: 0;
     width: 0;
