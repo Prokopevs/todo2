@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "private": true,
-  "homepage": "https://prokopevs.github.io/todo-small/",
+  "homepage": "https://prokopevs.github.io/todo2/",
   "dependencies": {
     "@craco/craco": "^7.0.0",
     "@reduxjs/toolkit": "^1.8.6",
