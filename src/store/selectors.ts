@@ -4,6 +4,9 @@ import { IList } from '../models/IList';
 export const selectAllTodos = (state: { todo: { list: IList[] } }) => state.todo.list
 export const selectActiveFilter = (state: { filter: { category: string } }) => state.filter.category
 
+/**
+ * селектор фильтрует задачи в зависимости от выбраного фильтра.
+ */
 export const selectTodosByFilter = createSelector(
     [selectAllTodos, selectActiveFilter],
     (allTodos, activeFilter) => {

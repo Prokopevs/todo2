@@ -5,6 +5,7 @@
   "private": true,
   "homepage": "https://prokopevs.github.io/todo-small/",
   "dependencies": {
+    "@craco/craco": "^7.0.0",
     "@reduxjs/toolkit": "^1.8.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -59,7 +60,6 @@
     "@babel/core": "^7.19.6",
     "@babel/preset-env": "^7.19.4",
     "@types/uuid": "^8.3.4",
-    "css-loader": "^6.7.1",
     "mini-css-extract-plugin": "^2.6.1",
     "node-sass": "^7.0.3",
     "sass-loader": "^13.1.0",

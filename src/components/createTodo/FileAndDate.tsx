@@ -19,10 +19,14 @@ const FileAndDate: React.FC<IFileAndDate> = ({
 
     React.useEffect(() => {
         const date = new Date()
-        const newDate = dayjs(date).format("YYYY-MM-DD")
-        setMinDate(newDate)
+        const newDate = dayjs(date).format("YYYY-MM-DD") // дату преобразуем в формат YYYY-MM-DD.
+        setMinDate(newDate) // устанавливаем минимальное число, которое можно будет выбрать.
     }, [])
 
+    /**
+     * Функция производит click по input для того, чтобы выбрать файлы
+     * которые необходимо прикрепить. 
+     */
     const handlePick = () => {
         filePicker.current!.click()
     }

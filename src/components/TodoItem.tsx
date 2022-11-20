@@ -3,9 +3,10 @@ import { useAppDispatch } from "../hooks"
 import { IList } from "../models/IList"
 import {
     fetchDeleteItem,
-    fetchChangeCompleted,
+    fetchChangeItem,
     removeTodo,
     toggleComplete,
+    replaceTitle,
 } from "../store/redusers/todoSlice"
 import { close } from "../pictures"
 import dayjs from "dayjs"
@@ -13,27 +14,49 @@ import dayjs from "dayjs"
 const TodoItem: React.FC<IList> = (props) => {
     const dispatch = useAppDispatch()
     const { id, title, subtitle, files, finishedDate, completed } = props
+    const [editTitle, setEditTitle] = React.useState(title)
+    const [changeTitle, setChangeTitle] = React.useState(false)
+
+    /**
+     * Функция для изменения поля completed
+     */
     const handleComplete = () => {
         const data = {
             ...props,
             completed: !completed,
         }
-        dispatch(fetchChangeCompleted(data))
+        dispatch(fetchChangeItem(data))
         dispatch(toggleComplete(id))
     }
 
+    /**
+     * Функция для удаления задачи
+     */
     const handleDelete = () => {
         dispatch(fetchDeleteItem(id))
         dispatch(removeTodo(id))
+    }
+
+    /**
+     * Функция для изменения заголовка задачи
+     */
+    const handleChangeTitle = () => {
+        if (title !== editTitle) {
+            const data = {
+                ...props,
+                title: editTitle,
+            }
+            dispatch(fetchChangeItem(data))
+            dispatch(replaceTitle(data))
+        }
+        setChangeTitle(false)
     }
 
     const date = new Date()
     const DateNow = dayjs(date).format("DD-MM-YYYY")
     const checkCompletedOverdue = completed ? "todo__item green" : "todo__item red"
     const checkCompletedActual = completed ? "todo__item green" : "todo__item"
-    const checkDate =
-        DateNow > finishedDate ? checkCompletedOverdue : checkCompletedActual
-
+    const checkDate = DateNow > finishedDate ? checkCompletedOverdue : checkCompletedActual
     return (
         <div className={checkDate}>
             <div className="todo__item_inner">
@@ -51,13 +74,30 @@ const TodoItem: React.FC<IList> = (props) => {
                     </label>
                 </div>
 
-                <p
-                    className={
-                        completed ? "todo__item_text completed" : "todo__item_text"
-                    }
-                >
-                    {title}
-                </p>
+                {changeTitle ? (
+                    <>
+                        <input
+                            value={editTitle}
+                            className="todo__item_inner_input"
+                            onChange={(e) => setEditTitle(e.target.value)}
+                        />
+                        <button
+                            className="todo__item_inner_button"
+                            onClick={() => handleChangeTitle()}
+                        >
+                            Save
+                        </button>
+                    </>
+                ) : (
+                    <p
+                        className={
+                            completed ? "todo__item_text completed" : "todo__item_text"
+                        }
+                        onDoubleClick={() => setChangeTitle(true)}
+                    >
+                        {title}
+                    </p>
+                )}
 
                 <img
                     className="todo__item_img"
@@ -76,7 +116,9 @@ const TodoItem: React.FC<IList> = (props) => {
                     <ul>
                         {files.map((item, index) => (
                             <li className="todo__item_files_item" key={item}>
-                                {index + 1} file
+                                <a download className="todo__item_files_link" href={item} >
+                                    {index + 1} file
+                                </a>
                             </li>
                         ))}
                     </ul>

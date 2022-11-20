@@ -11,7 +11,7 @@ interface FilterState {
 }
 
 const initialState: FilterState = {
-    list: [],
+    list: []
 }
 
 export const todoSlice = createSlice({
@@ -32,7 +32,13 @@ export const todoSlice = createSlice({
     },
     setList(state, action: PayloadAction<IList[]>) {
         state.list = action.payload
-    }
+    },
+    replaceTitle(state, action: PayloadAction<IList>) {
+        const toggledTodo = state.list.find(todo => todo.id === action.payload.id)
+        if (toggledTodo) {
+            toggledTodo.title = action.payload.title
+        }   
+    },
   },
 })
 
@@ -49,7 +55,7 @@ export const getData = () => async (dispatch: AppDispatch) => {
     }
 }
 
-export const fetchChangeCompleted = (data: IList) => async (dispatch: AppDispatch) => {
+export const fetchChangeItem = (data: IList) => async (dispatch: AppDispatch) => {
     try {
         const response = await putList(data)
     } catch (error) {
@@ -85,6 +91,6 @@ export const fetchPostItem = (data: IList) => async (dispatch: AppDispatch) => {
     }
 }
 
-export const { addTodo, toggleComplete, removeTodo, setList } = todoSlice.actions
+export const { addTodo, toggleComplete, removeTodo, setList, replaceTitle } = todoSlice.actions
 
 export default todoSlice.reducer

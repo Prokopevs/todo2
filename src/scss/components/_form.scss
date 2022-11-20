@@ -137,6 +137,10 @@
     font-family: inherit;
     text-align: center;
     line-height: 20px;
+
+    &:disabled {
+        opacity: 0.5;
+    }
 }
 
 .form__button:hover {

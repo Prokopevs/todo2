@@ -1,5 +1,5 @@
 import React from "react"
-import { useAppDispatch } from "../../hooks"
+import { useAppDispatch, useAppSelector } from "../../hooks"
 import { addTodo, fetchPostItem } from "../../store/redusers/todoSlice"
 import { todo } from "../../pictures"
 
@@ -13,6 +13,13 @@ const TodoInputForm: React.FC = () => {
     const [error, setError] = React.useState("")
     const dispatch = useAppDispatch()
 
+    /**
+     * Функция проверяет корректность ввода данных.
+     * Если данных в input нет или неправильно введена дата,
+     * то выводится ошибка. 
+     * Если данные введены корректно, то отправляем данные на 
+     * сервер.
+     */
     const handleAction = () => {
         if (title.trim().length && subtitle.trim().length) {
             if (dateFinish !== "" && dateFinish !== "Invalid Date") {
@@ -35,6 +42,9 @@ const TodoInputForm: React.FC = () => {
         }
     }
 
+    /**
+     * Функция очищает все поля 
+     */
     const clear = () => {
         setTitle("")
         setSubtitle("")
