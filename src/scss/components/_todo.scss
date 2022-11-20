@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 600px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -12,7 +12,8 @@
     border:#f79012 3px solid;
     border-radius: 15px;
     padding: 7px;
-    width: 550px;
+    width: 100%;
+    max-width: 550px;
 }
 
 .todo__item.red { 

@@ -1,6 +1,8 @@
 @import './vendor/reset';
 html {
     font-size: 62.5%;
+    overflow-y: scroll;
+    overflow-x: scroll;
 }
 
 body {
@@ -13,7 +15,6 @@ body {
 
 .modal-open {
     height: 100vh;
-    overflow-y: hidden;
 }
   
 code {
@@ -29,10 +30,6 @@ code {
 
 a {
     outline: none !important;
-}
-
-.page {
-    overflow: hidden;
 }
 
 
