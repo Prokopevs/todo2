@@ -11,7 +11,9 @@ const TodoInputForm: React.FC = () => {
     const [dateFinish, setDateFinish] = React.useState("")
     const [filesUrl, setFilesUrl] = React.useState([])
     const [error, setError] = React.useState("")
+    const [loading, setLoading] = React.useState(false)
     const dispatch = useAppDispatch()
+    console.log(loading)
 
     /**
      * Функция проверяет корректность ввода данных.
@@ -77,9 +79,14 @@ const TodoInputForm: React.FC = () => {
                     setDateFinish={setDateFinish}
                     setFilesUrl={setFilesUrl}
                     filesUrl={filesUrl}
+                    setLoading={setLoading}
                 />
 
-                <button className="form__button" onClick={handleAction}>
+                <button
+                    className="form__button"
+                    onClick={handleAction}
+                    disabled={loading}
+                >
                     Add todo
                 </button>
 

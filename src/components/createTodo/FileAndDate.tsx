@@ -7,12 +7,14 @@ interface IFileAndDate {
     setDateFinish: (...args: string[]) => void
     setFilesUrl: Dispatch<SetStateAction<never[]>>
     filesUrl: string[]
+    setLoading: (...args: boolean[]) => void
 }
 
 const FileAndDate: React.FC<IFileAndDate> = ({
     setDateFinish,
     setFilesUrl,
     filesUrl,
+    setLoading,
 }) => {
     const filePicker = React.useRef<HTMLInputElement>(null)
     const [minDate, setMinDate] = React.useState("")
@@ -46,7 +48,7 @@ const FileAndDate: React.FC<IFileAndDate> = ({
                     className="form__input file"
                     type="file"
                     ref={filePicker}
-                    onChange={(e) => filesUpload(e, setFilesUrl)}
+                    onChange={(e) => filesUpload(e, setFilesUrl, setLoading)}
                     multiple
                 />
 
