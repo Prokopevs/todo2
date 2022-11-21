@@ -1,8 +1,7 @@
 import React from "react"
-import { useAppDispatch } from "../../hooks"
+import { useAppDispatch, useAppSelector } from "../../hooks"
 import { addTodo, fetchPostItem } from "../../store/redusers/todoSlice"
 import { todo } from "../../pictures"
-
 import FileAndDate from "./FileAndDate"
 
 const TodoInputForm: React.FC = () => {
@@ -13,7 +12,7 @@ const TodoInputForm: React.FC = () => {
     const [error, setError] = React.useState("")
     const [loading, setLoading] = React.useState(false)
     const dispatch = useAppDispatch()
-    console.log(loading)
+    const list = useAppSelector((state) => state.todo.list)
 
     /**
      * Функция проверяет корректность ввода данных.
@@ -25,8 +24,9 @@ const TodoInputForm: React.FC = () => {
     const handleAction = () => {
         if (title.trim().length && subtitle.trim().length) {
             if (dateFinish !== "" && dateFinish !== "Invalid Date") {
+                const id = String(Number(list[list.length-1].id) + 1)
                 const obj = {
-                    id: new Date().toISOString(),
+                    id: list.length !== 0 ? id : "1",
                     title: title,
                     subtitle: subtitle,
                     files: filesUrl,
