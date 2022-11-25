@@ -140,6 +140,11 @@
     line-height: 20px;
 }
 
+.list__loading {
+    display: flex;
+    justify-content: center;
+}
+
 input{ display:none; }
 
 label div{

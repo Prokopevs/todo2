@@ -8,10 +8,12 @@ import { postList } from '../../http/postList';
 
 interface FilterState {
     list: IList[]
+    loading: boolean
 }
 
 const initialState: FilterState = {
-    list: []
+    list: [],
+    loading: false
 }
 
 export const todoSlice = createSlice({
@@ -39,15 +41,21 @@ export const todoSlice = createSlice({
             toggledTodo.title = action.payload.title
         }   
     },
+    setLoading(state, action: PayloadAction<boolean>) { 
+        state.loading = action.payload
+    }
   },
 })
 
 export const getData = () => async (dispatch: AppDispatch) => {
+    dispatch(setLoading(true))
     try {
         const response = await getList()
         dispatch(setList(response.data))
     } catch (error) {
         errorHandler(error)
+    } finally {
+        dispatch(setLoading(false))
     }
 }
 
@@ -83,6 +91,6 @@ const errorHandler = (error: unknown) => {
     console.log(errorMessage)
 }
 
-export const { addTodo, toggleComplete, removeTodo, setList, replaceTitle } = todoSlice.actions
+export const { addTodo, toggleComplete, removeTodo, setList, replaceTitle, setLoading } = todoSlice.actions
 
 export default todoSlice.reducer
