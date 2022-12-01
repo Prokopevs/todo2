@@ -40,7 +40,7 @@ const FileAndDate: React.FC<IFileAndDate> = ({
                 type="date"
                 min={minDate}
                 onChange={(e) =>
-                    setDateFinish(dayjs(e.target.value).format("DD-MM-YYYY"))
+                    setDateFinish(dayjs(e.target.value).format("YYYY-MM-DD"))
                 }
             />
             <div>

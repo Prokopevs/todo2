@@ -53,11 +53,12 @@ const TodoItem: React.FC<IList> = (props) => {
     }
 
     const date = new Date()
-    const DateNow = dayjs(date).format("DD-MM-YYYY")
+    const DateNow = dayjs(date).format("YYYY-MM-DD")
     const checkCompletedOverdue = completed ? "todo__item green" : "todo__item red"
     const checkCompletedActual = completed ? "todo__item green" : "todo__item"
     const checkDate =
         DateNow > finishedDate ? checkCompletedOverdue : checkCompletedActual
+    
     return (
         <div className={checkDate}>
             <div className="todo__item_inner">
@@ -133,7 +134,7 @@ const TodoItem: React.FC<IList> = (props) => {
                             : "todo__item_files_date green"
                     }
                 >
-                    Active until: {finishedDate}
+                    Active until: {dayjs(finishedDate).format("DD-MM-YYYY")}
                 </p>
             </div>
         </div>
