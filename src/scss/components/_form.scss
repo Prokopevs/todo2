@@ -138,7 +138,7 @@
     border-radius: 4px;
     color: #555555;
 
-    width: 100px;
+    width: auto;
     height: 40px;
     margin-top: 20px;
 
@@ -146,6 +146,7 @@
     font-family: inherit;
     text-align: center;
     line-height: 20px;
+    padding: 0 9px;
 
     &:disabled {
         opacity: 0.5;
